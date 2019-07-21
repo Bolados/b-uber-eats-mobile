@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oubereats/domains/constants/routes.dart';
 import 'package:oubereats/screens/splashScreen/splashScreen.dart';
 import 'package:oubereats/theme/theme.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
+
+I18n i18n = I18n.getInstance("assets/i18n");
 
 void main() async {
     // Initializes the translation module
@@ -47,6 +50,12 @@ class _MyApplicationState extends State<MyApplication> {
       // initialRoute: ROUTE.INDEX,
       home:  SplashScreen(),
       routes: ROUTES,
+      localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+      ],
+      // Tells the system which are the supported languages
+      supportedLocales: i18n.supportedLocales(),
     );
   }
 }
@@ -91,8 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    final String language = i18n.currentLanguage;
-    final String buttonText = language ;
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -125,12 +132,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
-              child: Text(buttonText),
+              child: Text(i18n.currentLanguage),
               onPressed: () async {
-                await i18n.setNewLanguage(language == 'fr' ? 'en' : 'fr');
+                await i18n.setLanguage(i18n.currentLanguage == 'fr' ? 'en' : 'fr');
                 setState((){});
               },
             ),
+            Text(i18n.text('hello')),
             Text(
               'You have pushed the button this many times:',
             ),
