@@ -10,8 +10,8 @@ class Body extends StatelessWidget {
     return Stack (
         children: <Widget>[
           Background(),
-          // Header(),
-          // Footer()
+          Header(),
+          Footer()
         ]
       );
   }

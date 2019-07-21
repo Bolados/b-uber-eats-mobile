@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:oubereats/domains/constants/routes.dart';
-import 'package:oubereats/screens/example1/examplescreen1.dart';
-import 'package:oubereats/screens/example2/examplescreen2.dart';
 import 'package:oubereats/theme/theme.dart';
 
 void main() => runApp(MyApp());
@@ -13,13 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: appTheme(),
-      initialRoute: ROUTES.INDEX,
-      routes: <String, WidgetBuilder> {
-        ROUTES.INDEX: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
-        ROUTES.HOME: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
-        "/ExScreen1": (BuildContext context) => ExScreen1(),
-        "/ExScreen2": (BuildContext context) => ExScreen2(),
-      },
+      initialRoute: ROUTE.INDEX,
+      routes: ROUTES,
     );
   }
 }
@@ -111,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               RaisedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/splashScreen');
+                  Navigator.pushNamed(context,  ROUTE.SPLASH_SCREEN);
                 },
                 child: Text('Splash screen'),
               ),
