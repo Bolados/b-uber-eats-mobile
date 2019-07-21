@@ -1,0 +1,26 @@
+{
+    "title": "Hello",
+    "msg": "Hello {} in the {} world ",
+    "clickMe": "Click me",
+    "profile": {
+      "reset_password": {
+        "title": "Reset Password",
+        "username": "Username",
+        "password": "password"
+      }
+    },
+    "clicked": {
+      "zero": "You clicked {} times!",
+      "one": "You clicked {} time!",
+      "other": "You clicked {} times!"
+    },
+    "hello": "Hello!",
+    "greetTo": "Nice to meet you, {}!",
+    "SPLASH_SCREEN" : {
+        "HEADER": "STAR DELIVERY",
+        "FOOTER": {
+          "FIRST": "INDIA'S FASTEST GROWING",
+          "SECOND" : "FOOD DELIVERY PLATFORM"
+        }
+    }
+}
