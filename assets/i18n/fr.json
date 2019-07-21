@@ -9,8 +9,16 @@
         "password": "password"
       }
     },
+    "deep": {
+      "clicked": {
+        "max": 2,
+        "0": "You clicked {} times!",
+        "1": "You clicked {} time!",
+        "n": "You clicked {} times!"
+      }
+    },
     "clicked": {
-      "zero": "You clicked {} times!",
+      "zero": "Tu clicked {} times!",
       "one": "You clicked {} time!",
       "other": "You clicked {} times!"
     },
@@ -22,5 +30,10 @@
           "FIRST" : "INDIA'S FASTEST GROWING",
           "SECOND" : "PLATFORME DE LIVRAISON"
         }
-    }
+    },
+    "PREFERENCES": {
+      "PLURAL": {
+        "MAX" : 2,
+        "KEY" : "n"
+      }
 }

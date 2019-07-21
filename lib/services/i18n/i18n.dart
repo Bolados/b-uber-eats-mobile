@@ -3,16 +3,20 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/services.dart';
-import 'package:oubereats/services/i18n/languages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///
 /// Preferences related
 ///
 const String _storageKey = "MyApplication_";
-const List<String> _supportedLanguages = languages;
+const List<String> _supportedLanguages = ['en', 'fr'];
+const Map<String, String> _plurialSettings = {
+  "KEY" : "PREFERENCES.PLURIAL",
+  "MAX" : "PREFERENCES.PLURIAL.MAX",
+  "MAX_KEY": "PREFERENCES.PLURIAL.KEY"
+};
 final String defaultLanguage = _supportedLanguages[0];
-final String defaultPath = "assets/i18n";
+final String defaultLoadResourcesPath = "assets/i18n";
 Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
 class I18n {
@@ -20,6 +24,7 @@ class I18n {
   String _loadResourcesPath;
   Map<dynamic, dynamic> _sentences;
   VoidCallback _onLocaleChangedCallback;
+
   static I18n instance;
 
   ///
@@ -53,7 +58,7 @@ class I18n {
   ///
   /// Returns the ressources path Ex: assets/i18n
   ///
-  get loadResourcesPath => _loadResourcesPath == null ? defaultPath : _loadResourcesPath;
+  get loadResourcesPath => _loadResourcesPath == null ? defaultLoadResourcesPath : _loadResourcesPath;
 
   
 
@@ -80,13 +85,13 @@ class I18n {
   ///
   /// Returns the translation that corresponds to the [key] consider [path]
   ///
-  String _resolve(String path, dynamic obj) {
+  String _resolveStr(String path, dynamic obj) {
     List<String> keys = path.split('.');
 
     if (keys.length > 1) {
       for (int index = 0; index <= keys.length; index++) {
-        if (obj.containsKey(keys[index]) && obj[keys[index]] is! String) {
-          return _resolve(
+        if (obj.containsKey(keys[index]) && ( obj[keys[index]] is! String)  ) {
+          return _resolveStr(
               keys.sublist(index + 1, keys.length).join('.'), obj[keys[index]]);
         }
 
@@ -97,6 +102,34 @@ class I18n {
     return obj[path] ?? path;
   }
 
+  int _resolveInt(String path, dynamic obj) {
+    String res = _resolveStr(path, obj);
+    print(path);
+    print(res);
+    return -1;
+    // try {
+    //   return int.parse(res);
+    // } catch(e) {
+    //   return -1;
+    // }
+  }
+
+  Map<String, dynamic> _resolvePlurial(String path, dynamic obj) {
+    List<String> keys = path.split('.');
+    if (keys.length > 1) {
+      for (int index = 0; index <= keys.length; index++) {
+        if (obj.containsKey(keys[index]) && (obj[keys[index]] is! Map<String, String>)) {
+          return _resolvePlurial(
+              keys.sublist(index + 1, keys.length).join('.'), obj[keys[index]]);
+        }
+        return obj[path] ?? null;
+      }
+    }
+
+    return obj[path] ?? null;
+  }
+
+
   ///
   /// Returns the translation that corresponds to the [key] and replace [args]
   /// Ex :  
@@ -105,7 +138,7 @@ class I18n {
   /// 
   ///
   String tr(String key, {List<String> args}) {
-    String res = _resolve(key, _sentences);
+    String res = _resolveStr(key, _sentences);
     if (args != null) {
       args.forEach((String str) {
         res = res.replaceFirst(RegExp(r'{}'), str);
@@ -124,15 +157,24 @@ class I18n {
   /// use => plural('clicked', [int counter])
   ///
   String plural(String key, dynamic value) {
-    String res = '';
-    if (value == 0) {
-      res = _sentences[key]['zero'];
-    } else if (value == 1) {
-      res = _sentences[key]['one'];
-    } else {
-      res = _sentences[key]['other'];
+    Map<String, dynamic> sentence = _resolvePlurial(key, _sentences);
+    if (sentence == null) {
+      return key;
     }
-    return res.replaceFirst(RegExp(r'{}'), '$value');
+    int maxNumber = _resolveInt(_plurialSettings['MAX'], _sentences);
+    String maxKey = _resolveStr(_plurialSettings['MAX_KEY'], _sentences);
+    String res = "";
+    print(sentence);
+    print(value);
+    print(maxNumber);
+    print(maxKey);
+    
+    if(value > maxNumber) {
+      res = sentence[maxKey];
+    } else {
+      res = sentence[value.toString()];
+    }
+    return key; //res.replaceFirst(RegExp(r'{}'), '$value');
   }
 
 
@@ -149,7 +191,7 @@ class I18n {
   /// 
   /// Load Json from Asset
   Future<String> loadJsonFromAsset(language) async {
-    return await rootBundle.loadString(_loadResourcesPath + '/' + language + '.json');
+    return await rootBundle.loadString(loadResourcesPath + '/' + language + '.json');
   }
 
   ///
@@ -159,11 +201,15 @@ class I18n {
 
   Future<Null> setLanguage([String newLanguage, bool saveInPrefs = false]) async {
     String language = newLanguage;
-    if ( (language == null) || ( (language = await getPreferredLanguage()) == "")) {
+    if (language == null) {
+      language = await getPreferredLanguage();
+    }
+
+    if (language.isEmpty) {
       language = defaultLanguage;
     }
   
-    if (_locale.languageCode != language) {
+    if ((_locale == null) || (_locale.languageCode != language)) {
 
       _locale = Locale(language, "");
       // Load the language strings

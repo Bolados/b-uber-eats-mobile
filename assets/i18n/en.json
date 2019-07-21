@@ -9,6 +9,14 @@
         "password": "password"
       }
     },
+    "deep": {
+      "clicked": {
+        "max": 2,
+        "0": "You clicked {} times!",
+        "1": "You clicked {} time!",
+        "n": "You clicked {} times!"
+      }
+    },
     "clicked": {
       "zero": "You clicked {} times!",
       "one": "You clicked {} time!",
@@ -22,5 +30,12 @@
           "FIRST": "INDIA'S FASTEST GROWING",
           "SECOND" : "FOOD DELIVERY PLATFORM"
         }
+    },
+    "PREFERENCES": {
+      "PLURAL": {
+        "MAX" : 2,
+        "KEY" : "n"
+      }
     }
+    
 }

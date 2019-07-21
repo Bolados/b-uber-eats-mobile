@@ -5,7 +5,7 @@ import 'package:oubereats/screens/splashScreen/splashScreen.dart';
 import 'package:oubereats/theme/theme.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
-I18n i18n = I18n.getInstance("assets/i18n");
+I18n i18n = I18n.getInstance();
 
 void main() async {
     // Initializes the translation module
@@ -138,7 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState((){});
               },
             ),
-            Text(i18n.text('hello')),
+            Text(i18n.tr('SPLASH_SCREEN.FOOTER.SECOND')), 
+            Text(i18n.plural('deep.clicked', _counter)),
+            Text(i18n.tr('msg', args: ['aissat', 'Flutter'])),
             Text(
               'You have pushed the button this many times:',
             ),
