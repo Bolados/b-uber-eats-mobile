@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oubereats/domains/constants/routes.dart';
+import 'package:oubereats/screens/splashScreen/splashScreen.dart';
 import 'package:oubereats/theme/theme.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: appTheme(),
-      initialRoute: ROUTE.INDEX,
+      // initialRoute: ROUTE.INDEX,
+      home:  SplashScreen(),
       routes: ROUTES,
     );
   }
@@ -62,6 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        // actions: <Widget>[
+        //   FlatButton(
+        //     child: Icon(Icons.add),
+        //   ),
+        // ]
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -91,42 +98,31 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.display1,
             ),
             RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/ExScreen1');
-                },
-                child: Text('ExScreen1'),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/ExScreen2');
-                },
-                child: Text('ExScreen2'),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context,  ROUTE.SPLASH_SCREEN);
-                },
-                child: Text('Splash screen'),
-              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/ExScreen1');
+              },
+              child: Text('ExScreen1'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/ExScreen2');
+              },
+              child: Text('ExScreen2'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context,  ROUTE.SPLASH_SCREEN);
+              },
+              child: Text('Splash screen'),
+            ),
           ],
         ),
       ),
-      floatingActionButton: 
-      // Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: <Widget>[
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
-          // FloatingActionButton(
-          //   onPressed: _incrementCounter,
-          //   tooltip: 'Increment',
-          //   child: Icon(Icons.language),
-          // ), 
-        // ],
-      // )
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), 
     );
   }
 }

@@ -12,7 +12,7 @@ class ROUTE {
 }
 
 final Map<String, WidgetBuilder> ROUTES = {
-    ROUTE.INDEX: (BuildContext context) => SplashScreen(),
+    // ROUTE.INDEX: (BuildContext context) => SplashScreen(),
     ROUTE.HOME: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
     ROUTE.SPLASH_SCREEN: (BuildContext context) => SplashScreen(),
     "/ExScreen1": (BuildContext context) => ExScreen1(),
