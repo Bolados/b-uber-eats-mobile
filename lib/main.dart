@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:oubereats/domains/constants/routes.dart';
+import 'package:oubereats/screens/example1/examplescreen1.dart';
+import 'package:oubereats/screens/example2/examplescreen2.dart';
 import 'package:oubereats/theme/theme.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +13,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: appTheme(),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: ROUTES.INDEX,
+      routes: <String, WidgetBuilder> {
+        ROUTES.INDEX: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
+        ROUTES.HOME: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
+        "/ExScreen1": (BuildContext context) => ExScreen1(),
+        "/ExScreen2": (BuildContext context) => ExScreen2(),
+      },
     );
   }
 }
@@ -109,21 +118,22 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
+      floatingActionButton: 
+      // Column(
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   children: <Widget>[
           FloatingActionButton(
             onPressed: _incrementCounter,
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ), // This trailing comma makes auto-formatting nicer for build methods.
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: Icon(Icons.language),
-          ), 
-        ],
-      )
+          // FloatingActionButton(
+          //   onPressed: _incrementCounter,
+          //   tooltip: 'Increment',
+          //   child: Icon(Icons.language),
+          // ), 
+        // ],
+      // )
     );
   }
 }
