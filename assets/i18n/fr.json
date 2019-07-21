@@ -1,39 +1,33 @@
 {
-    "title": "Salue",
-    "msg": "Salut {} dans le {} monde ",
-    "clickMe": "Click me",
-    "profile": {
-      "reset_password": {
-        "title": "Reset Password",
-        "username": "Username",
-        "password": "password"
+  "EXAMPLE": {
+    "TITLE": "OUberEats",
+    "MSG": "Salut {} dans le {} monde ",
+    "DEEP": {
+      "CLICKED": {
+        "0": "Tu clicked {} times!",
+        "1": "Tu clicked {} time!",
+        "n": "Tu clicked {} times!"
       }
     },
-    "deep": {
-      "clicked": {
-        "max": 2,
-        "0": "You clicked {} times!",
-        "1": "You clicked {} time!",
-        "n": "You clicked {} times!"
+    "CLICKED": {
+      "0": "Tu clicked {} times!",
+      "1": "Tu clicked {} time!",
+      "n": "Tu clicked {} times!"
+    },
+    "HELLO": "Salut!",
+    "GREETTO": "Heureux, {}!"
+  },    
+  "SPLASH_SCREEN" : {
+      "HEADER": "STAR DELIVERY",
+      "FOOTER": {
+        "FIRST" : "INDIA'S FASTEST GROWING",
+        "SECOND" : "PLATFORME DE LIVRAISON"
       }
-    },
-    "clicked": {
-      "zero": "Tu clicked {} times!",
-      "one": "You clicked {} time!",
-      "other": "You clicked {} times!"
-    },
-    "hello": "Salut!",
-    "greetTo": "Heureux, {}!",
-    "SPLASH_SCREEN" : {
-        "HEADER": "STAR DELIVERY",
-        "FOOTER": {
-          "FIRST" : "INDIA'S FASTEST GROWING",
-          "SECOND" : "PLATFORME DE LIVRAISON"
-        }
-    },
-    "PREFERENCES": {
-      "PLURAL": {
-        "MAX" : 2,
-        "KEY" : "n"
-      }
+  },
+  "PREFERENCES": {
+    "PLURAL": {
+      "MAX" : 2,
+      "KEY" : "n"
+    }
+  }
 }

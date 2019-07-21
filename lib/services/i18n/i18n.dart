@@ -11,9 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String _storageKey = "MyApplication_";
 const List<String> _supportedLanguages = ['en', 'fr'];
 const Map<String, String> _plurialSettings = {
-  "KEY" : "PREFERENCES.PLURIAL",
-  "MAX" : "PREFERENCES.PLURIAL.MAX",
-  "MAX_KEY": "PREFERENCES.PLURIAL.KEY"
+  "KEY" : "PREFERENCES.PLURAL",
+  "MAX" : "PREFERENCES.PLURAL.MAX",
+  "MAX_KEY": "PREFERENCES.PLURAL.KEY"
 };
 final String defaultLanguage = _supportedLanguages[0];
 final String defaultLoadResourcesPath = "assets/i18n";
@@ -66,7 +66,10 @@ class I18n {
   /// One-time initialization language
   /// 
   Future<Null> init([String language]) async {
-    if (_locale == null){
+    if (_locale == null) {
+      if( (language == null) || !_supportedLanguages.contains(language)){
+        language = defaultLanguage;
+      }
       await setLanguage(language);
     }
     return null;
@@ -85,13 +88,12 @@ class I18n {
   ///
   /// Returns the translation that corresponds to the [key] consider [path]
   ///
-  String _resolveStr(String path, dynamic obj) {
+  dynamic _resolve(String path, dynamic obj) {
     List<String> keys = path.split('.');
-
     if (keys.length > 1) {
       for (int index = 0; index <= keys.length; index++) {
-        if (obj.containsKey(keys[index]) && ( obj[keys[index]] is! String)  ) {
-          return _resolveStr(
+        if (obj.containsKey(keys[index]) && ( ( obj[keys[index]] is! String) || ( obj[keys[index]] is! int) )  ) {
+          return _resolve(
               keys.sublist(index + 1, keys.length).join('.'), obj[keys[index]]);
         }
 
@@ -102,34 +104,6 @@ class I18n {
     return obj[path] ?? path;
   }
 
-  int _resolveInt(String path, dynamic obj) {
-    String res = _resolveStr(path, obj);
-    print(path);
-    print(res);
-    return -1;
-    // try {
-    //   return int.parse(res);
-    // } catch(e) {
-    //   return -1;
-    // }
-  }
-
-  Map<String, dynamic> _resolvePlurial(String path, dynamic obj) {
-    List<String> keys = path.split('.');
-    if (keys.length > 1) {
-      for (int index = 0; index <= keys.length; index++) {
-        if (obj.containsKey(keys[index]) && (obj[keys[index]] is! Map<String, String>)) {
-          return _resolvePlurial(
-              keys.sublist(index + 1, keys.length).join('.'), obj[keys[index]]);
-        }
-        return obj[path] ?? null;
-      }
-    }
-
-    return obj[path] ?? null;
-  }
-
-
   ///
   /// Returns the translation that corresponds to the [key] and replace [args]
   /// Ex :  
@@ -138,7 +112,7 @@ class I18n {
   /// 
   ///
   String tr(String key, {List<String> args}) {
-    String res = _resolveStr(key, _sentences);
+    String res = _resolve(key, _sentences);
     if (args != null) {
       args.forEach((String str) {
         res = res.replaceFirst(RegExp(r'{}'), str);
@@ -157,24 +131,15 @@ class I18n {
   /// use => plural('clicked', [int counter])
   ///
   String plural(String key, dynamic value) {
-    Map<String, dynamic> sentence = _resolvePlurial(key, _sentences);
-    if (sentence == null) {
-      return key;
-    }
-    int maxNumber = _resolveInt(_plurialSettings['MAX'], _sentences);
-    String maxKey = _resolveStr(_plurialSettings['MAX_KEY'], _sentences);
-    String res = "";
-    print(sentence);
-    print(value);
-    print(maxNumber);
-    print(maxKey);
-    
-    if(value > maxNumber) {
-      res = sentence[maxKey];
+    int maxNumber = _resolve(_plurialSettings['MAX'], _sentences);
+    String maxKey = _resolve(_plurialSettings['MAX_KEY'], _sentences);
+    if(value >= maxNumber) {
+      key = key + '.' + maxKey;
     } else {
-      res = sentence[value.toString()];
+      key = key + '.' + value.toString();
     }
-    return key; //res.replaceFirst(RegExp(r'{}'), '$value');
+    String res = _resolve(key, _sentences) ;
+    return (res != null) ? res.replaceFirst(RegExp(r'{}'), '$value') : key;
   }
 
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:oubereats/services/i18n/i18n.dart';
 
+I18n i18n = I18n.getInstance();
 class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class Footer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
-                "INDIA'S FASTEST GROWING",
+                i18n.tr("SPLASH_SCREEN.FOOTER.FIRST"),
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 12.0,
@@ -24,7 +26,7 @@ class Footer extends StatelessWidget {
                 )
               ),
               Text(
-                "FOOD DELIVERY PLATFORM",
+                i18n.tr("SPLASH_SCREEN.FOOTER.SECOND"),
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 12.0,

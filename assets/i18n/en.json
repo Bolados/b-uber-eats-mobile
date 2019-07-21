@@ -1,41 +1,34 @@
 {
-    "title": "Hello",
-    "msg": "Hello {} in the {} world ",
-    "clickMe": "Click me",
-    "profile": {
-      "reset_password": {
-        "title": "Reset Password",
-        "username": "Username",
-        "password": "password"
-      }
-    },
-    "deep": {
-      "clicked": {
-        "max": 2,
+  "EXAMPLE": {
+    "TITLE": "OUberEats",
+    "MSG": "Hello {} in {} world ",
+    "DEEP": {
+      "CLICKED": {
         "0": "You clicked {} times!",
         "1": "You clicked {} time!",
         "n": "You clicked {} times!"
       }
     },
-    "clicked": {
-      "zero": "You clicked {} times!",
-      "one": "You clicked {} time!",
-      "other": "You clicked {} times!"
+    "CLICKED": {
+      "0": "You clic {} times!",
+      "1": "You clicked {} time!",
+      "n": "You clicked {} times!"
     },
-    "hello": "Hello!",
-    "greetTo": "Nice to meet you, {}!",
-    "SPLASH_SCREEN" : {
-        "HEADER": "STAR DELIVERY",
-        "FOOTER": {
-          "FIRST": "INDIA'S FASTEST GROWING",
-          "SECOND" : "FOOD DELIVERY PLATFORM"
-        }
-    },
-    "PREFERENCES": {
-      "PLURAL": {
-        "MAX" : 2,
-        "KEY" : "n"
+    "HELLO": "Hello!",
+    "GREETTO": "Greet to, {}!"
+  },    
+  "SPLASH_SCREEN" : {
+      "HEADER": "STAR DELIVERY",
+      "FOOTER": {
+        "FIRST": "INDIA'S FASTEST GROWING",
+        "SECOND" : "FOOD DELIVERY PLATFORM"
       }
+  },
+  "PREFERENCES": {
+    "PLURAL": {
+      "MAX" : 2,
+      "KEY" : "n"
     }
+  }
     
 }

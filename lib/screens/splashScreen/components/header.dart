@@ -1,6 +1,7 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:oubereats/services/i18n/i18n.dart';
+
+I18n i18n = I18n.getInstance();
 
 class Header extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class Header extends StatelessWidget {
     return 
       Center(
         child: Text (
-          "STAR DELIVERY",
+          i18n.tr("SPLASH_SCREEN.HEADER"),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,

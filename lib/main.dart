@@ -4,12 +4,16 @@ import 'package:oubereats/domains/constants/routes.dart';
 import 'package:oubereats/screens/splashScreen/splashScreen.dart';
 import 'package:oubereats/theme/theme.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
+import 'dart:ui' as ui;
 
 I18n i18n = I18n.getInstance();
 
 void main() async {
-    // Initializes the translation module
-    await i18n.init();
+  
+  Locale locale = ui.window.locale;  
+  print(locale);  
+  // Initializes the translation module
+  await i18n.init(locale.languageCode);
 
     // then start the application
     runApp( MyApplication(),);
@@ -28,6 +32,7 @@ class _MyApplicationState extends State<MyApplication> {
       // Initializes a callback should something need 
       // to be done when the language is changed
       i18n.onLocaleChangedCallback = _onLocaleChanged;
+      
   }
 
   ///
@@ -138,9 +143,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState((){});
               },
             ),
-            Text(i18n.tr('SPLASH_SCREEN.FOOTER.SECOND')), 
-            Text(i18n.plural('deep.clicked', _counter)),
-            Text(i18n.tr('msg', args: ['aissat', 'Flutter'])),
+            Text(i18n.tr('EXAMPLE.TITLE')), 
+            Text(i18n.plural('EXAMPLE.DEEP.CLICKED', _counter)),
+            Text(i18n.tr('EXAMPLE.MSG', args: ['aissat', 'Flutter'])),
             Text(
               'You have pushed the button this many times:',
             ),
