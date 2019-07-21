@@ -9,14 +9,12 @@ import 'dart:ui' as ui;
 I18n i18n = I18n.getInstance();
 
 void main() async {
-  
-  Locale locale = ui.window.locale;  
-  print(locale);  
-  // Initializes the translation module
-  await i18n.init(locale.languageCode);
 
-    // then start the application
-    runApp( MyApplication(),);
+  // Initializes the translation module
+  await i18n.init(ui.window.locale.languageCode);
+
+  // then start the application
+  runApp( MyApplication(),);
 }
 
 class MyApplication extends StatefulWidget {
