@@ -135,5 +135,3 @@ class I18n {
   }
   I18n._internal();
 }
-
-I18n i18n = new I18n();
