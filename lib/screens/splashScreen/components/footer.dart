@@ -18,7 +18,7 @@ class Footer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
-                i18n.tr("SPLASH_SCREEN.FOOTER.FIRST"),
+                i18n.tr("SPLASH_SCREEN.FOOTER.FIRST").toUpperCase(),
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 12.0,
@@ -26,7 +26,7 @@ class Footer extends StatelessWidget {
                 )
               ),
               Text(
-                i18n.tr("SPLASH_SCREEN.FOOTER.SECOND"),
+                i18n.tr("SPLASH_SCREEN.FOOTER.SECOND").toUpperCase(),
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 12.0,

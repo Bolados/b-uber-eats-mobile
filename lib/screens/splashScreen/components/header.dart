@@ -9,7 +9,7 @@ class Header extends StatelessWidget {
     return 
       Center(
         child: Text (
-          i18n.tr("SPLASH_SCREEN.HEADER"),
+          i18n.tr("SPLASH_SCREEN.HEADER").toUpperCase(),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,

@@ -9,8 +9,15 @@ import 'package:oubereats/screens/splashScreen/splashScreen.dart';
 class ROUTE {
   static final String INDEX = "/";
   static final String HOME = "/home";
-  static final String SPLASH_SCREEN = "/splash";
-  static final String LOGIN_SCREEN = "/login";
+  static final String SPLASH_SCREEN = SplashScreen.route;
+  static final String LOGIN_SCREEN = LoginScreen.route;
+
+  static Future<Null> init() {
+    LoginScreen.submitRoute = HOME;
+    LoginScreen.forgotPasswordRoute = "/";
+    SplashScreen.redirect = HOME;
+    return null;
+  }
 }
 
 final Map<String, WidgetBuilder> ROUTES = {

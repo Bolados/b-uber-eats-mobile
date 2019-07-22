@@ -5,6 +5,8 @@ import 'package:oubereats/domains/constants/routes.dart';
 import 'package:oubereats/screens/splashScreen/components/body.dart';
 
 class SplashScreen extends StatefulWidget {
+  static String route = "/splash";
+  static String redirect = ROUTE.HOME;
   @override
   _SplashScreenState createState() => new _SplashScreenState();
 }
@@ -16,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed(ROUTE.HOME);
+    Navigator.of(context).pushReplacementNamed(SplashScreen.redirect);
   }
 
   @override

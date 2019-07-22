@@ -10,9 +10,10 @@ I18n i18n = I18n.getInstance();
 
 void main() async {
 
+  await ROUTE.init();
   // Initializes the translation module
   await i18n.init(ui.window.locale.languageCode);
-
+  
   // then start the application
   runApp( MyApplication(),);
 }

@@ -24,7 +24,7 @@ class Header extends StatelessWidget {
       Card(
         elevation: 0,
         color: Colors.blue,
-        // margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(top: 10),
         child: SizedBox(
           width: double.infinity,          
           height: size.height * 20 / 100,
@@ -38,7 +38,7 @@ class Header extends StatelessWidget {
                   style: styleWelcome
                 ),    
               Text(
-                i18n.tr("LOGIN_SCREEN.HEADER.TITRE.~"),
+                i18n.tr("LOGIN_SCREEN.HEADER.TITLE.~").toUpperCase(),
                 style: styleTitre
               ),
             ]
