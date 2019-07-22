@@ -24,10 +24,62 @@
         "SECOND" : "PLATFORME DE LIVRAISON"
       }
   },
+  "LOGIN_SCREEN" : {
+    "HEADER" : {
+      "WELCOME_TO" : "Bienvenue sur",
+      "TITLE": {
+        "~": "SPLASH_SCREEN.HEADER"
+      }
+    },
+    "FOOTER": {
+      "TITLE": "Don't have an account?",
+      "ACTIONS": {
+        "REGISTER": {
+          "TITLE": "CREATE NOW",
+          "TOOLTIPS": ""
+        }
+      }
+    },
+    "LOGIN_FORM" : {
+      "TITLE": "LOGIN TO YOUR ACCOUNT ",
+      "INPUT" : {
+        "EMAIL": {
+          "PLACEHOLDER": "Enter Email ID",
+          "TOOLTIPS": "",
+          "ERROR" : ""
+        },
+        "PASSWORD": {
+          "PLACEHOLDER": "Enter Password ID",
+          "TOOLTIPS": "",
+          "ERROR" : ""
+        }
+      },      
+      "ACTIONS": {
+        "SUBMIT": {
+          "TITLE": "LOGIN",
+          "TOOLTIPS": ""
+        },
+        "FORGOT_PASSWORD": {
+          "TITLE": "Forgot Password?",
+          "TOOLTIPS": ""
+        }
+      }
+    },
+    "SOCIAL" : {
+      "TITLE": "CONTINUE WITH SOCIAL ACCOUNTS ",
+      "ACTIONS": {
+        "TITLE": "Continue with {} ",
+        "TOOLTIPS": ""
+      }      
+    }
+  },
   "PREFERENCES": {
     "PLURAL": {
       "MAX" : 2,
       "KEY" : "n"
+    },
+    "LINKS" : {
+      "KEY" : "~"
     }
   }
 }

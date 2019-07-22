@@ -15,6 +15,12 @@ const Map<String, String> _plurialSettings = {
   "MAX" : "PREFERENCES.PLURAL.MAX",
   "MAX_KEY": "PREFERENCES.PLURAL.KEY"
 };
+const Map<String, String> _linksSettings = {
+  "KEY" : "PREFERENCES.LINKS.KEY",
+};
+const Map<String, String> _resolverSettings = {
+  "SPLIT_KEY" : ".",
+};
 final String defaultLanguage = _supportedLanguages[0];
 final String defaultLoadResourcesPath = "assets/i18n";
 Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -89,7 +95,7 @@ class I18n {
   /// Returns the translation that corresponds to the [key] consider [path]
   ///
   dynamic _resolve(String path, dynamic obj) {
-    List<String> keys = path.split('.');
+    List<String> keys = path.split(_resolverSettings['SPLIT_KEY']);
     if (keys.length > 1) {
       for (int index = 0; index <= keys.length; index++) {
         if (obj.containsKey(keys[index]) && ( ( obj[keys[index]] is! String) || ( obj[keys[index]] is! int) )  ) {
@@ -104,6 +110,21 @@ class I18n {
     return obj[path] ?? path;
   }
 
+  bool isLink(String path) {
+    final key = _resolve(_linksSettings['KEY'], _sentences);
+    return path.contains(key);
+  }
+
+  dynamic _resolver(String path, dynamic obj) {
+    if (isLink(path)) {
+      // resolve link
+      final res = _resolve(path, obj);
+      // resolve path link
+      return _resolve(res, obj);
+    }
+    return _resolve(path, obj);
+  }
+
   ///
   /// Returns the translation that corresponds to the [key] and replace [args]
   /// Ex :  
@@ -112,7 +133,7 @@ class I18n {
   /// 
   ///
   String tr(String key, {List<String> args}) {
-    String res = _resolve(key, _sentences);
+    String res = _resolver(key, _sentences);
     if (args != null) {
       args.forEach((String str) {
         res = res.replaceFirst(RegExp(r'{}'), str);
@@ -131,14 +152,14 @@ class I18n {
   /// use => plural('clicked', [int counter])
   ///
   String plural(String key, dynamic value) {
-    int maxNumber = _resolve(_plurialSettings['MAX'], _sentences);
-    String maxKey = _resolve(_plurialSettings['MAX_KEY'], _sentences);
+    int maxNumber = _resolver(_plurialSettings['MAX'], _sentences);
+    String maxKey = _resolver(_plurialSettings['MAX_KEY'], _sentences);
     if(value >= maxNumber) {
       key = key + '.' + maxKey;
     } else {
       key = key + '.' + value.toString();
     }
-    String res = _resolve(key, _sentences) ;
+    String res = _resolver(key, _sentences) ;
     return (res != null) ? res.replaceFirst(RegExp(r'{}'), '$value') : key;
   }
 

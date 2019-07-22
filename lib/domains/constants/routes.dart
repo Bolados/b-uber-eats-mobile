@@ -10,7 +10,7 @@ class ROUTE {
   static final String INDEX = "/";
   static final String HOME = "/home";
   static final String SPLASH_SCREEN = "/splash";
-  static final String LOGIN_SCREEN = "/splash";
+  static final String LOGIN_SCREEN = "/login";
 }
 
 final Map<String, WidgetBuilder> ROUTES = {

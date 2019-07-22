@@ -3,11 +3,11 @@ import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
 
-TextStyle styleWelcome = TextStyle(
+TextStyle styleTitle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 14.0,
   fontStyle: FontStyle.normal,
-  color: Colors.black38
+  color: Colors.black
 );
 
 TextStyle styleTitre = TextStyle(
@@ -16,30 +16,26 @@ TextStyle styleTitre = TextStyle(
   color: Colors.black
 );
 
-class Header extends StatelessWidget {
+class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return 
       Card(
         elevation: 0,
-        color: Colors.blue,
-        // margin: EdgeInsets.only(top: 10),
+        color: Colors.red,
+        margin: EdgeInsets.only(top: 10),
         child: SizedBox(
           width: double.infinity,          
-          height: size.height * 20 / 100,
+          height: size.height * 40 / 100,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(
-                  i18n.tr("LOGIN_SCREEN.HEADER.WELCOME_TO"),
-                  style: styleWelcome
-                ),    
-              Text(
-                i18n.tr("LOGIN_SCREEN.HEADER.TITRE.~"),
-                style: styleTitre
+              ListTile(
+                title: Text(
+                  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.TITLE"),
+                  style: styleTitle,
+                ),
               ),
             ]
           ),
