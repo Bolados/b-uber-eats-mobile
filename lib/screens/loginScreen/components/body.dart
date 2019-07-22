@@ -4,10 +4,10 @@ import 'package:oubereats/screens/loginScreen/components/header.dart';
 
 class Body extends StatelessWidget {
   final List<String> _listViewData = [
-    "A List View with many Text - Here's one!",
-    "A List View with many Text - Here's another!",
-    "A List View with many Text - Here's more!",
-    "A List View with many Text - Here's more!",
+    "1 A List View with many Text - Here's one!",
+    "2 A List View with many Text - Here's another!",
+    "3 A List View with many Text - Here's more!",
+    "4 A List View with many Text - Here's more!",
   ];
   @override
   Widget build(BuildContext context) {
