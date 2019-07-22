@@ -20,14 +20,20 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return 
-      Card(
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      // decoration: BoxDecoration(
+      //   border: Border(
+      //     bottom: BorderSide(),top: BorderSide(),left: BorderSide(),right: BorderSide(),
+      //   ),
+      // ),
+      child: Card(
         elevation: 0,
-        color: Colors.blue,
+        color: Colors.transparent,
         margin: EdgeInsets.only(top: 10),
         child: SizedBox(
           width: double.infinity,          
-          height: size.height * 20 / 100,
+          height: 85,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,6 +50,7 @@ class Header extends StatelessWidget {
             ]
           ),
         )
-      );
+      )
+    );
   }
 }

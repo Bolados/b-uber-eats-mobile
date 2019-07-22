@@ -14,7 +14,7 @@ class ROUTE {
 
   static Future<Null> init() {
     LoginScreen.submitRoute = HOME;
-    LoginScreen.forgotPasswordRoute = "/";
+    LoginScreen.forgotPasswordRoute = "";
     SplashScreen.redirect = HOME;
     return null;
   }
