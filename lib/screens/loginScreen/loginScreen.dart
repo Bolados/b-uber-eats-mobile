@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:oubereats/screens/loginScreen/components/footer.dart';
 import 'package:oubereats/screens/loginScreen/components/header.dart';
 import 'package:oubereats/screens/loginScreen/components/loginForm.dart';
 import 'package:oubereats/screens/loginScreen/components/social.dart';
@@ -11,6 +12,7 @@ I18n i18n = I18n.getInstance();
 
 class LoginScreen extends StatefulWidget {
   static String route = '/login';
+  static String registerRoute = '';
   static String submitRoute = '';
   static String forgotPasswordRoute = '';
   
@@ -27,35 +29,30 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
-      // appBar: _buildBar(context),
-      body: body(context),
+      body: ListView(
+        padding: EdgeInsets.all(12.0),
+        children: <Widget>[ 
+          Header(),
+          SizedBox(
+            height: orientation == Orientation.portrait ? 0.0 : 1.0,
+          ),
+          LoginForm(),
+          SizedBox(
+            height: orientation == Orientation.portrait ? 0.0 : 1.0,
+          ),
+          Social(),
+          SizedBox(
+            height: orientation == Orientation.portrait ? 0.0 : 1.0,
+          ),
+          Footer(),
+        ]
+      ),
     );
   }
 
-  Widget body(context) {
-    return Material(
-      child: SafeArea(
-        child: OrientationBuilder(
-          builder: (BuildContext context, Orientation orientation) {
-            return ListView(
-              padding: EdgeInsets.all(8.0),
-              children: <Widget>[ 
-                Header(),
-                SizedBox(
-                  height: orientation == Orientation.portrait ? 0.0 : 1.0,
-                ),
-                LoginForm(),
-                SizedBox(
-                  height: orientation == Orientation.portrait ? 0.0 : 1.0,
-                ),
-                Social(),
-              ]
-            );
-          }
-        )
-      )
-    );
-  }
+
 }

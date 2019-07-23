@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oubereats/domains/constants/screenshelpers.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
@@ -20,19 +21,17 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(),top: BorderSide(),left: BorderSide(),right: BorderSide(),
-        ),
-      ),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.fromLTRB(5, 10, 5, 5),
         child: SizedBox(
-          width: double.infinity,          
-          height: 85,
+          width: double.infinity,       
+          height: (orientation == Orientation.portrait) 
+            ? ScreensHelpers.height(context, 85, 0.1) 
+            : ScreensHelpers.height(context, 85, 0.2) ,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

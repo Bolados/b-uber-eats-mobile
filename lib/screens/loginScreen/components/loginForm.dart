@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oubereats/domains/constants/screenshelpers.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
@@ -36,20 +37,23 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(),
-          top: BorderSide(),left: BorderSide(),right: BorderSide(),
+          bottom: BorderSide(width: 2),
         ),
       ),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.fromLTRB(5, 15, 5, 15),
         child: SizedBox (
           width: double.infinity,          
-          height: 300,
+          height:   (orientation == Orientation.portrait) 
+            ? ScreensHelpers.height(context, 260, 0.4) 
+            : ScreensHelpers.height(context, 260, 0.5) ,
           child: Form(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -71,7 +75,7 @@ class _LoginFormState extends State<LoginForm> {
 
   Widget _buildLoginFormTitle(context) {
     return Container( 
-      padding: EdgeInsets.all(0),
+      padding: EdgeInsets.only(top: 10, bottom: 10),
       child: Text(
         i18n.tr("LOGIN_SCREEN.LOGIN_FORM.TITLE").toUpperCase(),
         style: styleTitle,
@@ -81,8 +85,7 @@ class _LoginFormState extends State<LoginForm> {
 
   Widget _emailField() {
     return Container(
-      margin: EdgeInsets.only(top: 5, left: 5, right: 0, bottom: 0),
-      padding: EdgeInsets.all( 0),
+      margin: EdgeInsets.only(top: 5, left: 5, right: 0, bottom: 5),
       child: TextFormField(
         controller: _emailController,
         // validator:,
@@ -93,8 +96,8 @@ class _LoginFormState extends State<LoginForm> {
         // initialValue: "",
         decoration: InputDecoration(
           hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.HINT"),
-          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.LABEL"),
-          border: InputBorder.none,
+          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.LABEL"),          
+          contentPadding: EdgeInsets.only(bottom: 2),
         ),
       ),
     );
@@ -102,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
 
   Widget _passwordField() {
     return Container(
-      margin: EdgeInsets.only(left: 5),
+      margin: EdgeInsets.only(top: 5, left: 5, bottom: 0),
       child: TextFormField(
         keyboardType: TextInputType.text,
         controller: _passwordController,
@@ -113,8 +116,10 @@ class _LoginFormState extends State<LoginForm> {
         decoration: InputDecoration(
           hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.PASSWORD.HINT"),
           labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.PASSWORD.LABEL"),
-          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(bottom: 2),
           suffixIcon: IconButton(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: 0),
             icon: Icon(
               _passwordVisible
               ? Icons.visibility
@@ -189,7 +194,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   TextStyle styleTitle = TextStyle(
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
     color: Colors.black,
   );
 

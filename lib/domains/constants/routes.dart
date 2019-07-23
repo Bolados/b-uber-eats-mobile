@@ -2,8 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:oubereats/main.dart';
 import 'package:oubereats/screens/example1/examplescreen1.dart';
-import 'package:oubereats/screens/example2/examplescreen2.dart';
 import 'package:oubereats/screens/loginScreen/loginScreen.dart';
+import 'package:oubereats/screens/registerScreen/registerScreen.dart';
 import 'package:oubereats/screens/splashScreen/splashScreen.dart';
 
 class ROUTE {
@@ -11,11 +11,13 @@ class ROUTE {
   static final String HOME = "/home";
   static final String SPLASH_SCREEN = SplashScreen.route;
   static final String LOGIN_SCREEN = LoginScreen.route;
+  static final String REGISTER_SCREEN = RegisterScreen.route;
 
   static Future<Null> init() {
+    SplashScreen.redirect = LOGIN_SCREEN;
+    LoginScreen.registerRoute = REGISTER_SCREEN;
     LoginScreen.submitRoute = HOME;
     LoginScreen.forgotPasswordRoute = "";
-    SplashScreen.redirect = HOME;
     return null;
   }
 }
@@ -25,6 +27,7 @@ final Map<String, WidgetBuilder> ROUTES = {
     ROUTE.HOME: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
     ROUTE.SPLASH_SCREEN: (BuildContext context) => SplashScreen(),
     ROUTE.LOGIN_SCREEN: (BuildContext context) => LoginScreen(),
+    ROUTE.REGISTER_SCREEN: (BuildContext context) => RegisterScreen(),
     "/ExScreen1": (BuildContext context) => ExScreen1(),
     "/ExScreen2": (BuildContext context) => LoginScreen(),
   };
