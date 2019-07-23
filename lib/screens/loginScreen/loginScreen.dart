@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:oubereats/screens/loginScreen/components/header.dart';
 import 'package:oubereats/screens/loginScreen/components/loginForm.dart';
+import 'package:oubereats/screens/loginScreen/components/social.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
@@ -43,10 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[ 
                 Header(),
                 SizedBox(
-                  height: orientation == Orientation.portrait ? 0.0 : 5.0,
+                  height: orientation == Orientation.portrait ? 0.0 : 1.0,
                 ),
-                // _buildLoginForm(context),
                 LoginForm(),
+                SizedBox(
+                  height: orientation == Orientation.portrait ? 0.0 : 1.0,
+                ),
+                Social(),
               ]
             );
           }

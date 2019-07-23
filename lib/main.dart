@@ -12,7 +12,8 @@ void main() async {
 
   await ROUTE.init();
   // Initializes the translation module
-  await i18n.init(ui.window.locale.languageCode);
+  // await i18n.init(ui.window.locale.languageCode);
+  await i18n.init('en');
   
   // then start the application
   runApp( MyApplication(),);

@@ -51,13 +51,13 @@
           "PLACEHOLDER": "Enter Email ID",
           "LABEL": "Email ID",
           "HINT": "Email ID",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
         },
         "PASSWORD": {
           "PLACEHOLDER": "Enter Password ID",
           "LABEL": "Password ID",
           "HINT": "Password ID",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
         }
       },      
       "ACTIONS": {
@@ -67,8 +67,13 @@
         },
         "FORGOT_PASSWORD": {
           "TITLE": "Forgot Password?",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
+        },
+        "HIDE_SHOW_PASSWORD": {
+          "TITLE": "",
+          "TOOLTIP": "Show / Hide Password"
         }
+
       }
     },
     "SOCIAL" : {

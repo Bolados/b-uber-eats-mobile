@@ -36,7 +36,7 @@
       "ACTIONS": {
         "REGISTER": {
           "TITLE": "CREATE NOW",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
         }
       }
     },
@@ -47,23 +47,27 @@
           "PLACEHOLDER": "Entrer votre Email ",
           "LABEL": "Email ID",
           "HINT": "Entrer votre Email",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
         },
         "PASSWORD": {
           "PLACEHOLDER": "Entrer votre Mot de passe",
           "LABEL": "Password ID",
           "HINT": "Entrer votre Mot de passe",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
         }
       },    
       "ACTIONS": {
         "SUBMIT": {
           "TITLE": "LOGIN",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
         },
         "FORGOT_PASSWORD": {
           "TITLE": "Forgot Password?",
-          "TOOLTIPS": ""
+          "TOOLTIP": ""
+        },
+        "HIDE_SHOW_PASSWORD": {
+          "TITLE": "",
+          "TOOLTIP": "Afficher / Cacher Mot de passe"
         }
       }
     },
@@ -71,7 +75,7 @@
       "TITLE": "CONTINUE WITH SOCIAL ACCOUNTS ",
       "ACTIONS": {
         "TITLE": "Continue with {} ",
-        "TOOLTIPS": ""
+        "TOOLTIP": ""
       }      
     }
   },

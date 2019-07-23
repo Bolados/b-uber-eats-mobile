@@ -16,7 +16,7 @@ class _LoginFormState extends State<LoginForm> {
 
   // These functions can self contain any user auth logic required, they all have access to _email and _password
 
-  _loginPressed () {
+  _submit () {
     print('The user wants to login with ${_email} and ${_password}');
   }
 
@@ -24,69 +24,15 @@ class _LoginFormState extends State<LoginForm> {
     print("The user wants a password reset request sent to ${_email}");
   }
 
-  _togglePasswordVisibility () {
-    this.setState((){});
-    print("Toogle password to ${_passwordVisible}");
-   
-  }
-
-  final TextEditingController _emailFilter = new TextEditingController();
-  final TextEditingController _passwordFilter = new TextEditingController();
+  final TextEditingController _emailController = new TextEditingController();
+  final TextEditingController _passwordController = new TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _emailFilter.addListener(_emailListen);
-    _passwordFilter.addListener(_passwordListen);
+    _emailController.addListener(_emailListen);
+    _passwordController.addListener(_passwordListen);
   }
-
-  // final TextEditingController _emailFilter = new TextEditingController();
-  // final TextEditingController _passwordFilter = new TextEditingController();
-
-  // String email = "";
-  // String password = "";
-  // bool passwordVisible = false;
-  // VoidCallback submitAction;
-  // VoidCallback forgotPasswordAction;
-  // VoidCallback showPasswordAction;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _emailFilter.addListener(_emailListen);
-  //   _passwordFilter.addListener(_passwordListen);
-  //   _loginForm.forgotPasswordAction = _passwordReset;
-  //   _loginForm.submitAction = _loginPressed;
-  //   _loginForm.showPasswordAction = _togglePasswordVisibility;
-  // }
-
-  // void _emailListen() {
-  //   if (_emailFilter.text.isEmpty) {
-  //     email = "";
-  //   } else {
-  //     email = _emailFilter.text;
-  //   }
-  // }
-
-  // void _passwordListen() {
-  //   if (_passwordFilter.text.isEmpty) {
-  //     password = "";
-  //   } else {
-  //     password = _passwordFilter.text;
-  //   }
-  // }
-
-  // LoginForm({
-  //   this.email = "",
-  //   this.password = "",
-  //   this.passwordVisible = false,
-  //   this.submitAction,
-  //   this.forgotPasswordAction,
-  //   this.showPasswordAction,
-  // }) {
-  //   _emailFilter.addListener(_emailListen);
-  //   _passwordFilter.addListener(_passwordListen);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +51,6 @@ class _LoginFormState extends State<LoginForm> {
           width: double.infinity,          
           height: 300,
           child: Form(
-            
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -139,8 +84,7 @@ class _LoginFormState extends State<LoginForm> {
       margin: EdgeInsets.only(top: 5, left: 5, right: 0, bottom: 0),
       padding: EdgeInsets.all( 0),
       child: TextFormField(
-        controller: _emailFilter,
-        //  controller: _userPasswordController,
+        controller: _emailController,
         // validator:,
         // onSaved: (val) => _email = val,
         // onFieldSubmitted: (val) => _email = val,
@@ -161,14 +105,14 @@ class _LoginFormState extends State<LoginForm> {
       margin: EdgeInsets.only(left: 5),
       child: TextFormField(
         keyboardType: TextInputType.text,
-        controller: _passwordFilter,
+        controller: _passwordController,
         // validator:,
         // onSaved: (val) => _password = val,
         // onFieldSubmitted: (val) => _password = val,
         obscureText: !_passwordVisible, //This will obscure text dynamically
         decoration: InputDecoration(
-          labelText: 'Password',
-          hintText: 'Enter your password',
+          hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.PASSWORD.HINT"),
+          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.PASSWORD.LABEL"),
           border: InputBorder.none,
           suffixIcon: IconButton(
             icon: Icon(
@@ -177,18 +121,8 @@ class _LoginFormState extends State<LoginForm> {
               : Icons.visibility_off,
               color: Colors.grey,
             ),
-            tooltip: 'Show / Hide Password',
-            onPressed: () {
-              // _passwordVisible = !_passwordVisible;
-              // if(this.showPasswordAction != null) {
-              //   this.showPasswordAction();
-              // }
-              // print(this.showPasswordAction);
-              // Update the state i.e. toogle the state of passwordVisible variable
-              setState(() {
-                  _passwordVisible = !_passwordVisible;
-              });
-            },
+            tooltip: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.ACTIONS.HIDE_SHOW_PASSWORD.TOOLTIP"),
+            onPressed: _togglePasswordVisibility,
           ),
         ),
       )
@@ -202,7 +136,7 @@ class _LoginFormState extends State<LoginForm> {
         alignment: Alignment.centerRight,
         child: FlatButton(
           child: Text(
-            'Forgot Password?',
+            i18n.tr("LOGIN_SCREEN.LOGIN_FORM.ACTIONS.FORGOT_PASSWORD.TITLE"),
             style: forgotPasswordStyle,
             textAlign: TextAlign.right,
           ),
@@ -222,29 +156,35 @@ class _LoginFormState extends State<LoginForm> {
         child: RaisedButton(
           color: Colors.redAccent,
           child: Text(
-            'Login'.toUpperCase(),
+            i18n.tr("LOGIN_SCREEN.LOGIN_FORM.ACTIONS.SUBMIT.TITLE").toUpperCase(),
             style: submitButtonStyle,
             ),
-          onPressed: _loginPressed
+          onPressed: _submit
         )
       )
     );
   }
 
+  void _togglePasswordVisibility () {
+    setState(() {
+        _passwordVisible = !_passwordVisible;
+    });
+  }
+
 
   void _emailListen() {
-    if (_emailFilter.text.isEmpty) {
+    if (_emailController.text.isEmpty) {
       _email = "";
     } else {
-      _email = _emailFilter.text;
+      _email = _emailController.text;
     }
   }
 
   void _passwordListen() {
-    if (_passwordFilter.text.isEmpty) {
+    if (_passwordController.text.isEmpty) {
       _password = "";
     } else {
-      _password = _passwordFilter.text;
+      _password = _passwordController.text;
     }
   }
 
