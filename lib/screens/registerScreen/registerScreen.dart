@@ -6,6 +6,7 @@ import 'package:oubereats/services/i18n/i18n.dart';
 I18n i18n = I18n.getInstance();
 
 
+
 class RegisterScreen extends StatefulWidget {
   static String route = '/register';
   static String submitRoute = '';
