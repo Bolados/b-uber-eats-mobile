@@ -49,6 +49,7 @@ class _MyApplicationState extends State<MyApplication> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: appTheme(),
       // initialRoute: ROUTE.INDEX,

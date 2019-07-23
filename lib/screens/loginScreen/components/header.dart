@@ -21,16 +21,15 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      // decoration: BoxDecoration(
-      //   border: Border(
-      //     bottom: BorderSide(),top: BorderSide(),left: BorderSide(),right: BorderSide(),
-      //   ),
-      // ),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(),top: BorderSide(),left: BorderSide(),right: BorderSide(),
+        ),
+      ),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.all(5),
         child: SizedBox(
           width: double.infinity,          
           height: 85,

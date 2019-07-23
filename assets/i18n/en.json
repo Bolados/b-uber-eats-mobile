@@ -49,13 +49,15 @@
       "INPUT" : {
         "EMAIL": {
           "PLACEHOLDER": "Enter Email ID",
-          "TOOLTIPS": "",
-          "ERROR" : ""
+          "LABEL": "Email ID",
+          "HINT": "Email ID",
+          "TOOLTIPS": ""
         },
         "PASSWORD": {
           "PLACEHOLDER": "Enter Password ID",
-          "TOOLTIPS": "",
-          "ERROR" : ""
+          "LABEL": "Password ID",
+          "HINT": "Password ID",
+          "TOOLTIPS": ""
         }
       },      
       "ACTIONS": {

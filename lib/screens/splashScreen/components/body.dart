@@ -7,12 +7,20 @@ import 'package:oubereats/screens/splashScreen/components/header.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack (
-        children: <Widget>[
-          Background(),
-          Header(),
-          Footer()
-        ]
-      );
+    return Material(
+      child: SafeArea(
+        child: OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+            return Stack(
+              children: <Widget>[ 
+                Background(),
+                Header(),
+                Footer()
+              ]
+            );
+          }
+        )
+      )
+    );
   }
 }

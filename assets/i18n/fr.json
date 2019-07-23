@@ -44,16 +44,18 @@
       "TITLE": "LOGIN TO YOUR ACCOUNT ",
       "INPUT" : {
         "EMAIL": {
-          "PLACEHOLDER": "Enter Email ID",
-          "TOOLTIPS": "",
-          "ERROR" : ""
+          "PLACEHOLDER": "Entrer votre Email ",
+          "LABEL": "Email ID",
+          "HINT": "Entrer votre Email",
+          "TOOLTIPS": ""
         },
         "PASSWORD": {
-          "PLACEHOLDER": "Enter Password ID",
-          "TOOLTIPS": "",
-          "ERROR" : ""
+          "PLACEHOLDER": "Entrer votre Mot de passe",
+          "LABEL": "Password ID",
+          "HINT": "Entrer votre Mot de passe",
+          "TOOLTIPS": ""
         }
-      },      
+      },    
       "ACTIONS": {
         "SUBMIT": {
           "TITLE": "LOGIN",
