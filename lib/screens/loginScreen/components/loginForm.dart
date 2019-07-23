@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oubereats/domains/constants/screenshelpers.dart';
+import 'package:oubereats/screens/loginScreen/loginScreen.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
@@ -17,12 +18,18 @@ class _LoginFormState extends State<LoginForm> {
 
   // These functions can self contain any user auth logic required, they all have access to _email and _password
 
-  _submit () {
+  _submit (BuildContext context) {
     print('The user wants to login with ${_email} and ${_password}');
+    if (LoginScreen.submitRoute.isNotEmpty) {
+      Navigator.pushReplacementNamed(context, LoginScreen.submitRoute);
+    }
   }
 
-  _passwordReset () {
+  _passwordReset (BuildContext context) {
     print("The user wants a password reset request sent to ${_email}");
+    if (LoginScreen.forgotPasswordRoute.isNotEmpty) {
+      Navigator.pushNamed(context, LoginScreen.forgotPasswordRoute);
+    }
   }
 
   final TextEditingController _emailController = new TextEditingController();
@@ -146,7 +153,7 @@ class _LoginFormState extends State<LoginForm> {
             textAlign: TextAlign.right,
           ),
           padding: EdgeInsets.all(0),
-          onPressed: _passwordReset
+          onPressed: () => _passwordReset(context)
         ),
       )
     );
@@ -164,7 +171,7 @@ class _LoginFormState extends State<LoginForm> {
             i18n.tr("LOGIN_SCREEN.LOGIN_FORM.ACTIONS.SUBMIT.TITLE").toUpperCase(),
             style: submitButtonStyle,
             ),
-          onPressed: _submit
+          onPressed: () => _submit(context)
         )
       )
     );
