@@ -21,6 +21,7 @@ class ROUTE {
     LoginScreen.submitRoute = HOME;
     LoginScreen.forgotPasswordRoute = "";
     RegisterScreen.submitRoute = VERIFICATION_SCREEN;
+    VerificationScreen.submitRoute = HOME;
     return null;
   }
 }

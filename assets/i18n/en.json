@@ -33,7 +33,7 @@
     "FORM": {
       "ACTIONS": {
         "SUBMIT": {
-          "TITLE": "CREATE ACCOUNT",
+          "TITLE": "VERIFY",
           "TOOLTIPS": ""
         }
       }

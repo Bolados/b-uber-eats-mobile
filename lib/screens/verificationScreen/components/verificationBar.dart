@@ -68,12 +68,12 @@ class VerificationBar {
 
   Widget _icon(context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 25, 20),
+      padding: EdgeInsets.fromLTRB(0, 0, 25, 10),
       child: 
       Image.asset(
         'assets/icons/smartphone.png',
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         fit: BoxFit.fill,
       ),
     );

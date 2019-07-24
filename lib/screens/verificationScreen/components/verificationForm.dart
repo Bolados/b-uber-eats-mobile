@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:pinput/pin_put/pin_put.dart';
 import 'package:oubereats/screens/helpers/screenshelpers.dart';
-import 'package:oubereats/screens/registerScreen/registerScreen.dart';
 import 'package:oubereats/screens/verificationScreen/verificationScreen.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
@@ -19,14 +19,14 @@ class VerificationForm extends StatefulWidget {
 
 
 class _VerificationFormState extends State<VerificationForm> {
-  
+
   String _code = "";
 
   // These functions can self contain any user auth logic required, they all have access to _email and _password
 
   _submit (BuildContext context) {
-    print('The user wants to register with ${_code}');
-    if (VerificationScreen.submitRoute.isNotEmpty) {
+    print('The user wants to register with $_code');
+    if (_code.isNotEmpty && VerificationScreen.submitRoute.isNotEmpty) {
       Navigator.pushReplacementNamed(context, VerificationScreen.submitRoute);
     }
   }
@@ -45,8 +45,10 @@ class _VerificationFormState extends State<VerificationForm> {
     if (orientation == Orientation.portrait) {
       return size.height - widget.verificationBar.preferredSize.height - 100;
     } 
-    return 400;
+    return 250;
   }
+
+  bool _unFocus = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,12 +80,12 @@ class _VerificationFormState extends State<VerificationForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _codeField(),
                   SizedBox(
-                    
+                    height: 20,
                   ),
+                  _codeField(context),
                   Expanded(
-                    child: _submitButton(),
+                    child: _submitButton(context),
                   ),
                 ]
               )
@@ -94,39 +96,66 @@ class _VerificationFormState extends State<VerificationForm> {
     );
   }
 
-
-  Widget _codeField() {
+  Widget _codeField(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
-      // margin: EdgeInsets.only(top: 5, left: 5, bottom: 5),
-      child: TextFormField(
-        controller: _codeController,
-        // validator:,
-        // onSaved: (val) => _email = val,
-        // onFieldSubmitted: (val) => _email = val,
-        keyboardType: TextInputType.number,
-        autofocus: false,
-        // initialValue: "",
-        decoration: InputDecoration(
-          // hintText:  i18n.tr("VERIFICATION_SCREEN.FORM.INPUT.PHONE.HINT"),
-          // labelText: i18n.tr("VERIFICATION_SCREEN.FORM.INPUT.PHONE.LABEL"),
+      alignment: Alignment.center,
+      padding: (orientation == Orientation.portrait) 
+          ? EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 25, 0.01), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 25, 0.01), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01)
+          ) 
+          : EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 25, 0.1), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 25, 0.1), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01)
+          )  ,
+      child: PinPut(
+          fieldsCount: 4,
+          onSubmit: (String pin) {
+            _code = pin;
+          },
+          actionButtonsEnabled: false,
+          inputDecoration: InputDecoration(
+            border: const UnderlineInputBorder(),
+            counterText: ''
+          ),
         ),
-      ),
     );
   }
 
-  Widget _submitButton() {
+  Widget _submitButton(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
       alignment: Alignment.bottomCenter,
+      padding: (orientation == Orientation.portrait) 
+          ? EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01)
+          ) 
+          : EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.1), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 5, 0.1), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01)
+          )  ,
       child: SizedBox(
         width: double.infinity,    
         height: 50.0,
         child: RaisedButton(
-          color: Colors.grey,
+          color: Colors.green,
           child: Text(
             i18n.tr("VERIFICATION_SCREEN.FORM.ACTIONS.SUBMIT.TITLE").toUpperCase(),
             style: submitButtonStyle,
             ),
-          onPressed: () => _submit(context)
+          onPressed: () => _submit(context),
         )
       )
     );
@@ -145,12 +174,6 @@ class _VerificationFormState extends State<VerificationForm> {
   TextStyle styleTitle = TextStyle(
     fontWeight: FontWeight.w600,
     color: Colors.black,
-  );
-
-  TextStyle forgotPasswordStyle = TextStyle(
-    color: Colors.redAccent,
-    fontWeight: FontWeight.normal,
-    fontStyle: FontStyle.normal,
   );
 
   TextStyle submitButtonStyle = TextStyle(
