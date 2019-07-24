@@ -52,6 +52,8 @@ flutter:
 
   assets:
     - assets/images/background_splash.png
+    - assets/icons/coffee-cup.png
+    - assets/icons/smartphone.png
     - assets/i18n/fr.json
     - assets/i18n/en.json
 

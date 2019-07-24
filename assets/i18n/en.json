@@ -26,6 +26,63 @@
   },
 
   "REGISTER_SCREEN": {
+    "HEADER_BAR" : {
+      "TITLE": "CREATE ACCOUNT",
+      "SUB_TITLE": "Create an account with new phone number"
+    },
+    "FORM": {
+      "INPUT" : {
+        "PHONE": {
+          "PLACEHOLDER": "10 digit mobile number",
+          "LABEL": "Phone",
+          "HINT": "Phone",
+          "TOOLTIP": ""
+        },
+        "USERNAME": {
+          "PLACEHOLDER": "Enter Your Full Username",
+          "LABEL": "Username ",
+          "HINT": "Username",
+          "TOOLTIP": ""
+        },
+        "EMAIL": {
+          "PLACEHOLDER": "Enter Email ID",
+          "LABEL": "Email",
+          "HINT": "Email",
+          "TOOLTIP": ""
+        },
+        "PASSWORD": {
+          "PLACEHOLDER": "Enter Password ID",
+          "LABEL": "Password",
+          "HINT": "Password",
+          "TOOLTIP": ""
+        },
+        "REFER-CODE": {
+          "PLACEHOLDER": "Referral code",
+          "LABEL": "Referral code",
+          "HINT": "Referral code",
+          "TOOLTIP": ""
+        }
+      },
+      "CHECKBOX": {
+        "REFER-CODE": {
+          "LABEL": " I have a referral code"
+        }
+      },
+      "ACTIONS": {
+        "SUBMIT": {
+          "TITLE": "CREATE ACCOUNT",
+          "TOOLTIPS": ""
+        }
+      },
+      "FOOTER":{
+        "LABEL": "By creating account you accept terms and condition"
+      }
+
+
+
+    }
+    
+
 
   },
   "LOGIN_SCREEN" : {
@@ -49,14 +106,14 @@
       "INPUT" : {
         "EMAIL": {
           "PLACEHOLDER": "Enter Email ID",
-          "LABEL": "Email ID",
-          "HINT": "Email ID",
+          "LABEL": "Email",
+          "HINT": "Email",
           "TOOLTIP": ""
         },
         "PASSWORD": {
           "PLACEHOLDER": "Enter Password ID",
-          "LABEL": "Password ID",
-          "HINT": "Password ID",
+          "LABEL": "Password",
+          "HINT": "Password",
           "TOOLTIP": ""
         }
       },      

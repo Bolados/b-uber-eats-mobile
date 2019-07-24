@@ -1,25 +1,22 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:oubereats/domains/constants/hexColor.dart';
-import 'package:oubereats/screens/registerScreen/components/registerBar.dart';
-import 'package:oubereats/screens/registerScreen/components/registerForm.dart';
+import 'package:oubereats/screens/verificationScreen/components/verificationBar.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
 
 
 
-class RegisterScreen extends StatefulWidget {
-  static String route = '/register';
+class VerificationScreen extends StatefulWidget {
+  static String route = '/verification';
   static String submitRoute = '';
   
   @override
-  _RegisterScreenState createState() => new _RegisterScreenState();
+  _VerificationScreenState createState() => new _VerificationScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _VerificationScreenState extends State<VerificationScreen> {
 
   @override
   void initState() {
@@ -32,11 +29,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     Orientation orientation = MediaQuery.of(context).orientation;
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
-      appBar: RegisterBar(context: context).buildBar(),
+      appBar: VerificationBar(context: context).buildBar(),
       body: ListView(
         padding: EdgeInsets.all(12.0),
         children: <Widget>[ 
-          RegisterForm(),
+          // Header(),
           // SizedBox(
           //   height: orientation == Orientation.portrait ? 0.0 : 1.0,
           // ),

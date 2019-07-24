@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oubereats/domains/constants/screenshelpers.dart';
+import 'package:oubereats/screens/helpers/screenshelpers.dart';
 import 'package:oubereats/screens/loginScreen/loginScreen.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
@@ -47,36 +47,63 @@ class _LoginFormState extends State<LoginForm> {
     Size size = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 2),
-        ),
-      ),
+      // decoration: BoxDecoration(
+      //   border: Border(
+      //     bottom: BorderSide(width: 2),
+      //   ),
+      // ),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.fromLTRB(5, 15, 5, 15),
+        margin: (orientation == Orientation.portrait) 
+          ? EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 15, 0.01), 
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01)
+          ) 
+          : EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeHeight(context, 15, 0.01), 
+            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01)
+          )  ,
         child: SizedBox (
           width: double.infinity,          
           height:   (orientation == Orientation.portrait) 
-            ? ScreensHelpers.height(context, 260, 0.4) 
-            : ScreensHelpers.height(context, 260, 0.5) ,
+            ? ScreensHelpers.sizeHeight(context, 290, 0.4) 
+            : ScreensHelpers.sizeHeight(context, 290, 0.5) ,
           child: Form(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 _buildLoginFormTitle(context),
                 _emailField(),
                 _passwordField(),
                 _forgotPasswordLabel(),
-                _submitButton()
+                _submitButton(),
+                _underline(context)
               ]
             ),
           )
         )
       )
+    );
+  }
+
+  Widget _underline(context) {
+    return Container( 
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: 2),
+        ),
+      ),
+      padding: EdgeInsets.only(top: 20, bottom: 0),
+      child: SizedBox(
+        width: double.infinity,
+      ),
     );
   }
 

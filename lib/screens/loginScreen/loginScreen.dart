@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:oubereats/screens/helpers/screenshelpers.dart';
 import 'package:oubereats/screens/loginScreen/components/footer.dart';
 import 'package:oubereats/screens/loginScreen/components/header.dart';
 import 'package:oubereats/screens/loginScreen/components/loginForm.dart';
@@ -34,7 +35,19 @@ class _LoginScreenState extends State<LoginScreen> {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       body: ListView(
-        padding: EdgeInsets.all(12.0),
+        padding: (orientation == Orientation.portrait) 
+          ?  EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 12, 0.01), 
+            ScreensHelpers.sizeHeight(context, 12, 0.01), 
+            ScreensHelpers.sizeWidth(context, 12, 0.01), 
+            ScreensHelpers.sizeHeight(context, 12, 0.01)
+          )  
+          :  EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 12, 0.05), 
+            ScreensHelpers.sizeHeight(context, 12, 0.05), 
+            ScreensHelpers.sizeWidth(context, 12, 0.05), 
+            ScreensHelpers.sizeHeight(context, 12, 0.05)
+          )   ,
         children: <Widget>[ 
           Header(),
           SizedBox(

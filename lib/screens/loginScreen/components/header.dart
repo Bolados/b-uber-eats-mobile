@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oubereats/domains/constants/screenshelpers.dart';
+import 'package:oubereats/screens/helpers/screenshelpers.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
@@ -26,12 +26,24 @@ class Header extends StatelessWidget {
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.fromLTRB(5, 10, 5, 5),
+        margin: (orientation == Orientation.portrait) 
+          ? EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 5, 0.01)
+          ) 
+          : EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeHeight(context, 5, 0.01)
+          )  ,
         child: SizedBox(
           width: double.infinity,       
           height: (orientation == Orientation.portrait) 
-            ? ScreensHelpers.height(context, 85, 0.1) 
-            : ScreensHelpers.height(context, 85, 0.2) ,
+            ? ScreensHelpers.sizeHeight(context, 85, 0.1) 
+            : ScreensHelpers.sizeHeight(context, 85, 0.2) ,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

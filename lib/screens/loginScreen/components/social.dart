@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oubereats/domains/constants/screenshelpers.dart';
+import 'package:oubereats/screens/helpers/screenshelpers.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:enum_to_string/enum_to_string.dart';
@@ -16,12 +16,24 @@ class Social extends StatelessWidget {
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.fromLTRB(30, 20, 30, 0),
+        margin: (orientation == Orientation.portrait) 
+          ? EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 30, 0.01), 
+            ScreensHelpers.sizeHeight(context, 5, 0), 
+            ScreensHelpers.sizeWidth(context, 30, 0.01), 
+            ScreensHelpers.sizeHeight(context, 0, 0)
+          ) 
+          : EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 30, 0.2), 
+            ScreensHelpers.sizeHeight(context, 10, 0.01), 
+            ScreensHelpers.sizeWidth(context, 30, 0.2), 
+            ScreensHelpers.sizeHeight(context, 0, 0)
+          )  ,
         child: SizedBox (
           width: double.infinity,          
           height: (orientation == Orientation.portrait) 
-            ? ScreensHelpers.height(context, 160, 0.25) 
-            : ScreensHelpers.height(context, 160, 0.5) ,
+            ? ScreensHelpers.sizeHeight(context, 160, 0.25) 
+            : ScreensHelpers.sizeHeight(context, 160, 0.5) ,
           child: Form(
             child: Column(
               mainAxisSize: MainAxisSize.min,
