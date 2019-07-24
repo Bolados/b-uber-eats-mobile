@@ -240,10 +240,10 @@ class _LoginFormState extends State<LoginForm> {
 
   TextStyle submitButtonStyle = TextStyle(
     color: Colors.white,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
-    letterSpacing: 2.0,
-    fontSize: 16,
+    fontSize: 20,
+    letterSpacing: 2.0
   );
 
 

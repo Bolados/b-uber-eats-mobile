@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oubereats/screens/helpers/screenshelpers.dart';
+import 'package:oubereats/screens/loginScreen/loginScreen.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:enum_to_string/enum_to_string.dart';
@@ -7,6 +8,15 @@ import 'package:enum_to_string/enum_to_string.dart';
 I18n i18n = I18n.getInstance();
 
 class Social extends StatelessWidget {
+
+  
+void _purchaseSocial(_Kind kind, BuildContext context) {
+  print('User want to continue with Facebook $kind Network');
+  if (LoginScreen.submitRoute.isNotEmpty) {
+      Navigator.pushReplacementNamed(context, LoginScreen.submitRoute);
+    }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -133,27 +143,10 @@ Widget _social(BuildContext context, _Kind kind) {
             ),
           ],
         ),
-        onPressed: () => _purchaseSocial(kind),
+        onPressed: () => _purchaseSocial(kind, context),
       )
-      // .icon(
-      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-      //   color: _socialColor(kind),
-      //   icon: Icon(
-      //     _socialIcon(kind),
-      //     color: Colors.white,
-      //   ),
-      //   label: Text(
-      //     i18n.tr("LOGIN_SCREEN.SOCIAL.ACTIONS.TITLE",args: [EnumToString.parse(kind)]),
-      //     style: buttonStyle,
-      //   ),
-      //   onPressed: () => _purchaseSocial(kind),
-      // )
     )
   );
-}
-
-void _purchaseSocial(_Kind kind) {
-  print('User want to continue with Facebook $kind Network');
 }
 
 

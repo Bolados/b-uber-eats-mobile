@@ -27,6 +27,9 @@ class _VerificationFormState extends State<VerificationForm> {
   _submit (BuildContext context) {
     print('The user wants to register with $_code');
     if (_code.isNotEmpty && VerificationScreen.submitRoute.isNotEmpty) {
+      while(Navigator.canPop(context)){
+        Navigator.pop(context);
+      }
       Navigator.pushReplacementNamed(context, VerificationScreen.submitRoute);
     }
   }
@@ -43,12 +46,10 @@ class _VerificationFormState extends State<VerificationForm> {
     Size size = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
     if (orientation == Orientation.portrait) {
-      return size.height - widget.verificationBar.preferredSize.height - 100;
+      return size.height - widget.verificationBar.preferredSize.height - 65;
     } 
     return 250;
   }
-
-  bool _unFocus = false;
 
   @override
   Widget build(BuildContext context) {
@@ -178,9 +179,9 @@ class _VerificationFormState extends State<VerificationForm> {
 
   TextStyle submitButtonStyle = TextStyle(
     color: Colors.white,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
-    fontSize: 16,
+    fontSize: 24,
     letterSpacing: 2.0
   );
 

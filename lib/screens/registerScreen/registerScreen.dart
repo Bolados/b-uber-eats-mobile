@@ -11,7 +11,7 @@ I18n i18n = I18n.getInstance();
 
 
 class RegisterScreen extends StatefulWidget {
-  static String route = '/register';
+  static const String route = '/register';
   static String submitRoute = '';
   
   @override

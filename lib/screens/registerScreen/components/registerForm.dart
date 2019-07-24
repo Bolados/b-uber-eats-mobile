@@ -260,7 +260,7 @@ class _RegisterFormState extends State<RegisterForm> {
         width: double.infinity,    
         height: 50.0,
         child: RaisedButton(
-          color: Colors.grey,
+          color: Colors.blueGrey,
           child: Text(
             i18n.tr("REGISTER_SCREEN.FORM.ACTIONS.SUBMIT.TITLE").toUpperCase(),
             style: submitButtonStyle,
@@ -337,12 +337,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextStyle submitButtonStyle = TextStyle(
     color: Colors.white,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
-    fontSize: 16,
+    fontSize: 24,
     letterSpacing: 2.0
   );
-
 
 }
   

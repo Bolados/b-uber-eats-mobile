@@ -5,8 +5,8 @@ import 'package:oubereats/domains/constants/routes.dart';
 import 'package:oubereats/screens/splashScreen/components/body.dart';
 
 class SplashScreen extends StatefulWidget {
-  static String route = "/splash";
-  static String redirect = ROUTE.HOME;
+  static const String route = "/splash";
+  static String redirect = "";
   @override
   _SplashScreenState createState() => new _SplashScreenState();
 }

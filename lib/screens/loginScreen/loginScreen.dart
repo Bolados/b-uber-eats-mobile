@@ -12,7 +12,7 @@ I18n i18n = I18n.getInstance();
 
 
 class LoginScreen extends StatefulWidget {
-  static String route = '/login';
+  static const String route = '/login';
   static String registerRoute = '';
   static String submitRoute = '';
   static String forgotPasswordRoute = '';

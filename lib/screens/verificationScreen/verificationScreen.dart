@@ -13,7 +13,7 @@ I18n i18n = I18n.getInstance();
 
 
 class VerificationScreen extends StatefulWidget {
-  static String route = '/verification';
+  static const String route = '/verification';
   static String submitRoute = '';
   
   @override
