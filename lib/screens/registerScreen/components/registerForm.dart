@@ -1,13 +1,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:oubereats/screens/helpers/screenshelpers.dart';
-import 'package:oubereats/screens/loginScreen/loginScreen.dart';
 import 'package:oubereats/screens/registerScreen/registerScreen.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
 
 I18n i18n = I18n.getInstance();
 
 class RegisterForm extends StatefulWidget {
+
+  AppBar registerBar;
+
+  RegisterForm({@required this.registerBar});
+
   @override
   _RegisterFormState createState() => new _RegisterFormState();
 }
@@ -48,14 +52,20 @@ class _RegisterFormState extends State<RegisterForm> {
     _referCodeController.addListener(_referCodeListen);
   }
 
+  double getHeight(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
+    if (orientation == Orientation.portrait) {
+      return size.height - widget.registerBar.preferredSize.height - 100;
+    } 
+    return 400;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all()
-      ),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
@@ -67,15 +77,15 @@ class _RegisterFormState extends State<RegisterForm> {
             ScreensHelpers.sizeHeight(context, 10, 0.01)
           ) 
           : EdgeInsets.fromLTRB(
-            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeWidth(context, 5, 0.05), 
             ScreensHelpers.sizeHeight(context, 15, 0.01), 
-            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeWidth(context, 5, 0.05), 
             ScreensHelpers.sizeHeight(context, 10, 0.01)
-          ),
+          )  ,
           child: Form(
             child: SizedBox(
               width: double.infinity,
-              height: (orientation == Orientation.portrait) ? size.height - 150 - 100 : 400,
+              height: getHeight(context),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -86,7 +96,9 @@ class _RegisterFormState extends State<RegisterForm> {
                   _emailField(),
                   _passwordField(),
                   _referCodeCheckbox(),
-                  _referCodeField() ,
+                  SizedBox(
+                    child: _referCodeField(),
+                  ),
                   Expanded(
                     child: _submitButton(),
                   ),
@@ -97,10 +109,6 @@ class _RegisterFormState extends State<RegisterForm> {
         // )
       )
     );
-  }
-
-  Widget _fields(context) {
-
   }
 
 
@@ -196,7 +204,6 @@ class _RegisterFormState extends State<RegisterForm> {
       return Container();
     }
     return Container(
-      margin: EdgeInsets.only(top: 10),
       child: TextFormField(
         controller: _usernameController,
         // validator:,
@@ -248,9 +255,6 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Widget _submitButton() {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all()
-      ),
       alignment: Alignment.bottomCenter,
       child: SizedBox(
         width: double.infinity,    
@@ -335,6 +339,7 @@ class _RegisterFormState extends State<RegisterForm> {
     color: Colors.white,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
+    fontSize: 16,
     letterSpacing: 2.0
   );
 

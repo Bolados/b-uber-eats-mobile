@@ -1,6 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:oubereats/services/i18n/i18n.dart';
+
+I18n i18n = I18n.getInstance();
 
 class VerificationBar {
   BuildContext context;
@@ -8,6 +11,8 @@ class VerificationBar {
   
   
   Widget buildBar(){
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return AppBar (
         backgroundColor: Color.fromRGBO(252, 245, 233, 1),
         leading: IconButton(
@@ -18,9 +23,8 @@ class VerificationBar {
           },
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: Size.fromHeight((orientation == Orientation.portrait) ? 60 : 55),
           child: Container(
-            padding: EdgeInsets.fromLTRB(0, 0, 0,25),
             child: Card(
               elevation: 0,
               color: Colors.transparent,
@@ -42,14 +46,16 @@ class VerificationBar {
   
 
   Widget _title(context) {
-    return Expanded (
-      child: ListTile(
+    return 
+    Expanded (
+      child: 
+      ListTile(
         title: Text(
-          'Verify Number'.toUpperCase(),
+          i18n.tr("VERIFICATION_SCREEN.HEADER_BAR.TITLE").toUpperCase(),
           style: styleTitle,
         ),
         subtitle: Text(
-          'OTP send to {xxxxxxxx} ',
+          i18n.tr("VERIFICATION_SCREEN.HEADER_BAR.SUB_TITLE",args: ['9876543210']),
           maxLines: 2,
           style: styleSubtitle,
         ),
@@ -69,7 +75,6 @@ class VerificationBar {
         width: 40,
         height: 40,
         fit: BoxFit.fill,
-        color: Colors.transparent,
       ),
     );
   }

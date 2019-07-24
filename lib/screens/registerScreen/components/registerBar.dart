@@ -25,7 +25,6 @@ class RegisterBar {
         bottom: PreferredSize(
           preferredSize: Size.fromHeight((orientation == Orientation.portrait) ? 60 : 55),
           child: Container(
-            // padding: EdgeInsets.fromLTRB(0, 0, 0,0),
             child: Card(
               elevation: 0,
               color: Colors.transparent,

@@ -242,7 +242,8 @@ class _LoginFormState extends State<LoginForm> {
     color: Colors.white,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
-    letterSpacing: 2.0
+    letterSpacing: 2.0,
+    fontSize: 16,
   );
 
 

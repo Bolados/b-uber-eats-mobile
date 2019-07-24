@@ -30,15 +30,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     Size size = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
     final bottom = MediaQuery.of(context).viewInsets.bottom;
+    AppBar registerBar = RegisterBar(context: context).buildBar();
     return new Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: RegisterBar(context: context).buildBar(),
+      appBar: registerBar,
       body: Container(
         padding: EdgeInsets.only(bottom: bottom),
         child: ListView(
           padding: EdgeInsets.all(12.0),
           children: <Widget>[ 
-            RegisterForm(),
+            RegisterForm(registerBar: registerBar,),
             SizedBox(
               height: orientation == Orientation.portrait ? 0.0 : 1.0,
             ),
@@ -62,9 +63,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ScreensHelpers.sizeHeight(context, 0, 0)
           ) 
           : EdgeInsets.fromLTRB(
-            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeWidth(context, 5, 0.05), 
             ScreensHelpers.sizeHeight(context, 0, 0), 
-            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeWidth(context, 5, 0.05), 
             ScreensHelpers.sizeHeight(context, 0, 0)
           ),
       child: Text(

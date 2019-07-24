@@ -25,6 +25,21 @@
     }
   },
 
+  "VERIFICATION_SCREEN": {
+    "HEADER_BAR" : {
+      "TITLE": "VERIFY NUMBER",
+      "SUB_TITLE": "OTP send to {}"
+    },
+    "FORM": {
+      "ACTIONS": {
+        "SUBMIT": {
+          "TITLE": "CREATE ACCOUNT",
+          "TOOLTIPS": ""
+        }
+      }
+    }
+  },
+  
   "REGISTER_SCREEN": {
     "HEADER_BAR" : {
       "TITLE": "CREATE ACCOUNT",
