@@ -35,13 +35,13 @@
         "PHONE": {
           "PLACEHOLDER": "10 digit mobile number",
           "LABEL": "Phone",
-          "HINT": "Phone",
+          "HINT": "10 digit mobile number",
           "TOOLTIP": ""
         },
         "USERNAME": {
           "PLACEHOLDER": "Enter Your Full Username",
           "LABEL": "Username ",
-          "HINT": "Username",
+          "HINT": "Enter Your Full Username",
           "TOOLTIP": ""
         },
         "EMAIL": {
@@ -53,10 +53,10 @@
         "PASSWORD": {
           "PLACEHOLDER": "Enter Password ID",
           "LABEL": "Password",
-          "HINT": "Password",
+          "HINT": "Enter Password ID",
           "TOOLTIP": ""
         },
-        "REFER-CODE": {
+        "REFER_CODE": {
           "PLACEHOLDER": "Referral code",
           "LABEL": "Referral code",
           "HINT": "Referral code",
@@ -64,7 +64,7 @@
         }
       },
       "CHECKBOX": {
-        "REFER-CODE": {
+        "REFER_CODE": {
           "LABEL": " I have a referral code"
         }
       },
@@ -72,16 +72,16 @@
         "SUBMIT": {
           "TITLE": "CREATE ACCOUNT",
           "TOOLTIPS": ""
+        },
+        "HIDE_SHOW_PASSWORD": {
+          "TITLE": "",
+          "TOOLTIP": "Show / Hide Password"
         }
-      },
-      "FOOTER":{
-        "LABEL": "By creating account you accept terms and condition"
       }
-
-
-
+    },
+    "FOOTER":{
+      "LABEL": "By creating account you accept terms and condition"
     }
-    
 
 
   },

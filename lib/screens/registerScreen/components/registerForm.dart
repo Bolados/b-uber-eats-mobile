@@ -53,6 +53,9 @@ class _RegisterFormState extends State<RegisterForm> {
     Size size = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
     return Container(
+      decoration: BoxDecoration(
+        border: Border.all()
+      ),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
@@ -68,27 +71,27 @@ class _RegisterFormState extends State<RegisterForm> {
             ScreensHelpers.sizeHeight(context, 15, 0.01), 
             ScreensHelpers.sizeWidth(context, 5, 0.03), 
             ScreensHelpers.sizeHeight(context, 10, 0.01)
-          )  ,
-        // child: SizedBox (
-        //   width: double.infinity,          
-        //   height:   (orientation == Orientation.portrait) 
-        //     ? ScreensHelpers.sizeHeight(context, 400, 0) 
-        //     : ScreensHelpers.sizeHeight(context, 400, 0) ,
+          ),
           child: Form(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _phoneField(),
-                _usernameField(),
-                _emailField(),
-                _passwordField(),
-                _referCodeCheckbox(),
-                _referCodeField() ,
-                SizedBox(height: 25),
-                _submitButton(),
-              ]
+            child: SizedBox(
+              width: double.infinity,
+              height: (orientation == Orientation.portrait) ? size.height - 150 - 100 : 400,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _phoneField(),
+                  _usernameField(),
+                  _emailField(),
+                  _passwordField(),
+                  _referCodeCheckbox(),
+                  _referCodeField() ,
+                  Expanded(
+                    child: _submitButton(),
+                  ),
+                ]
+              )
             ),
           )
         // )
@@ -96,10 +99,14 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
+  Widget _fields(context) {
+
+  }
+
 
   Widget _phoneField() {
     return Container(
-      margin: EdgeInsets.only(top: 5, left: 5, bottom: 5),
+      // margin: EdgeInsets.only(top: 5, left: 5, bottom: 5),
       child: TextFormField(
         controller: _phoneController,
         // validator:,
@@ -109,9 +116,8 @@ class _RegisterFormState extends State<RegisterForm> {
         autofocus: false,
         // initialValue: "",
         decoration: InputDecoration(
-          hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.HINT"),
-          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.LABEL"),          
-          contentPadding: EdgeInsets.only(bottom: 2),
+          hintText:  i18n.tr("REGISTER_SCREEN.FORM.INPUT.PHONE.HINT"),
+          labelText: i18n.tr("REGISTER_SCREEN.FORM.INPUT.PHONE.LABEL"),
         ),
       ),
     );
@@ -119,7 +125,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Widget _emailField() {
     return Container(
-      margin: EdgeInsets.only(top: 5, left: 5),
+      // margin: EdgeInsets.only(left: 5),
       child: TextFormField(
         controller: _emailController,
         // validator:,
@@ -129,9 +135,8 @@ class _RegisterFormState extends State<RegisterForm> {
         autofocus: false,
         // initialValue: "",
         decoration: InputDecoration(
-          hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.HINT"),
-          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.LABEL"),          
-          contentPadding: EdgeInsets.only(bottom: 2),
+          hintText:  i18n.tr("REGISTER_SCREEN.FORM.INPUT.EMAIL.HINT"),
+          labelText: i18n.tr("REGISTER_SCREEN.FORM.INPUT.EMAIL.LABEL"),  
         ),
       ),
     );
@@ -140,7 +145,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Widget _usernameField() {
     return Container(
-      margin: EdgeInsets.only(top: 10, left: 5),
+      // margin: EdgeInsets.only(top: 10, left: 5),
       child: TextFormField(
         controller: _usernameController,
         // validator:,
@@ -150,9 +155,8 @@ class _RegisterFormState extends State<RegisterForm> {
         autofocus: false,
         // initialValue: "",
         decoration: InputDecoration(
-          hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.HINT"),
-          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.LABEL"),          
-          contentPadding: EdgeInsets.only(bottom: 2),
+          hintText:  i18n.tr("REGISTER_SCREEN.FORM.INPUT.USERNAME.HINT"),
+          labelText: i18n.tr("REGISTER_SCREEN.FORM.INPUT.USERNAME.LABEL"),
         ),
       ),
     );
@@ -160,16 +164,26 @@ class _RegisterFormState extends State<RegisterForm> {
 
    Widget _referCodeCheckbox() {
     return Container(
-      // margin: EdgeInsets.only(top: 5, left: 5),
+      margin: EdgeInsets.only(top: 10),
       child: Row (
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Checkbox(
-            value: _haveReferCode,
-            onChanged: (bool value) => _changeHaveReferCode(value),
+          Transform.scale(
+            scale: 1.5,
+            alignment: Alignment.centerRight,
+            child: Checkbox(
+              value: _haveReferCode,
+              onChanged: (bool value) => _changeHaveReferCode(value),
+            )
           ),
           Expanded(
-            child: Text(
-              "I have refer Code"
+            child: Container(
+              transform: Matrix4.translationValues(-15.0, 0.0, 0.0),
+              child: Text(
+                i18n.tr("REGISTER_SCREEN.FORM.CHECKBOX.REFER_CODE.LABEL"),
+              )
             ),
           )
         ],
@@ -182,7 +196,7 @@ class _RegisterFormState extends State<RegisterForm> {
       return Container();
     }
     return Container(
-      margin: EdgeInsets.only(top: 10, left: 5),
+      margin: EdgeInsets.only(top: 10),
       child: TextFormField(
         controller: _usernameController,
         // validator:,
@@ -192,8 +206,8 @@ class _RegisterFormState extends State<RegisterForm> {
         autofocus: false,
         // initialValue: "",
         decoration: InputDecoration(
-          hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.HINT"),
-          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.EMAIL.LABEL"),          
+          hintText:  i18n.tr("REGISTER_SCREEN.FORM.INPUT.REFER_CODE.HINT"),
+          labelText: i18n.tr("REGISTER_SCREEN.FORM.INPUT.REFER_CODE.LABEL"),          
           contentPadding: EdgeInsets.only(bottom: 2),
         ),
       ),
@@ -203,7 +217,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Widget _passwordField() {
     return Container(
-      margin: EdgeInsets.only(top: 10, left: 5),
+      margin: EdgeInsets.only(top: 10),
       child: TextFormField(
         keyboardType: TextInputType.text,
         controller: _passwordController,
@@ -212,8 +226,8 @@ class _RegisterFormState extends State<RegisterForm> {
         // onFieldSubmitted: (val) => _password = val,
         obscureText: !_passwordVisible, //This will obscure text dynamically
         decoration: InputDecoration(
-          hintText:  i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.PASSWORD.HINT"),
-          labelText: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.INPUT.PASSWORD.LABEL"),
+          hintText:  i18n.tr("REGISTER_SCREEN.FORM.INPUT.PASSWORD.HINT"),
+          labelText: i18n.tr("REGISTER_SCREEN.FORM.INPUT.PASSWORD.LABEL"),
           contentPadding: EdgeInsets.only(bottom: 2),
           suffixIcon: IconButton(
             alignment: Alignment.centerRight,
@@ -224,7 +238,7 @@ class _RegisterFormState extends State<RegisterForm> {
               : Icons.visibility_off,
               color: Colors.grey,
             ),
-            tooltip: i18n.tr("LOGIN_SCREEN.LOGIN_FORM.ACTIONS.HIDE_SHOW_PASSWORD.TOOLTIP"),
+            tooltip: i18n.tr("REGISTER_SCREEN.FORM.ACTIONS.HIDE_SHOW_PASSWORD.TOOLTIP"),
             onPressed: _togglePasswordVisibility,
           ),
         ),
@@ -234,14 +248,17 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Widget _submitButton() {
     return Container(
-      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.all()
+      ),
+      alignment: Alignment.bottomCenter,
       child: SizedBox(
         width: double.infinity,    
         height: 50.0,
         child: RaisedButton(
-          color: Colors.redAccent,
+          color: Colors.grey,
           child: Text(
-            i18n.tr("LOGIN_SCREEN.LOGIN_FORM.ACTIONS.SUBMIT.TITLE").toUpperCase(),
+            i18n.tr("REGISTER_SCREEN.FORM.ACTIONS.SUBMIT.TITLE").toUpperCase(),
             style: submitButtonStyle,
             ),
           onPressed: () => _submit(context)

@@ -11,6 +11,8 @@ class RegisterBar {
   
   
   Widget buildBar(){
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return AppBar (
         backgroundColor: Color.fromRGBO(252, 245, 233, 1),
         leading: IconButton(
@@ -21,9 +23,9 @@ class RegisterBar {
           },
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: Size.fromHeight((orientation == Orientation.portrait) ? 60 : 55),
           child: Container(
-            padding: EdgeInsets.fromLTRB(0, 0, 0,25),
+            // padding: EdgeInsets.fromLTRB(0, 0, 0,0),
             child: Card(
               elevation: 0,
               color: Colors.transparent,
@@ -45,8 +47,10 @@ class RegisterBar {
   
 
   Widget _title(context) {
-    return Expanded (
-      child: ListTile(
+    return 
+    Expanded (
+      child: 
+      ListTile(
         title: Text(
           i18n.tr("REGISTER_SCREEN.HEADER_BAR.TITLE").toUpperCase(),
           style: styleTitle,

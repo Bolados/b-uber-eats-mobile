@@ -1,8 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:oubereats/domains/constants/hexColor.dart';
+import 'package:oubereats/screens/helpers/screenshelpers.dart';
 import 'package:oubereats/screens/registerScreen/components/registerBar.dart';
 import 'package:oubereats/screens/registerScreen/components/registerForm.dart';
 import 'package:oubereats/services/i18n/i18n.dart';
@@ -30,26 +29,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
+    final bottom = MediaQuery.of(context).viewInsets.bottom;
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       appBar: RegisterBar(context: context).buildBar(),
-      body: ListView(
-        padding: EdgeInsets.all(12.0),
-        children: <Widget>[ 
-          RegisterForm(),
-          // SizedBox(
-          //   height: orientation == Orientation.portrait ? 0.0 : 1.0,
-          // ),
-          // LoginForm(),
-          // SizedBox(
-          //   height: orientation == Orientation.portrait ? 0.0 : 1.0,
-          // ),
-          // Social(),
-          // SizedBox(
-          //   height: orientation == Orientation.portrait ? 0.0 : 1.0,
-          // ),
-          // Footer(),
-        ]
+      body: Container(
+        padding: EdgeInsets.only(bottom: bottom),
+        child: ListView(
+          padding: EdgeInsets.all(12.0),
+          children: <Widget>[ 
+            RegisterForm(),
+            SizedBox(
+              height: orientation == Orientation.portrait ? 0.0 : 1.0,
+            ),
+            _labelTerms(context),
+          ]
+        )
+      ),
+    );
+  }
+
+  
+  Widget _labelTerms(context) {
+    Size size = MediaQuery.of(context).size;
+    Orientation orientation = MediaQuery.of(context).orientation;
+    return Container(
+      margin: (orientation == Orientation.portrait) 
+          ? EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 0, 0), 
+            ScreensHelpers.sizeWidth(context, 5, 0.01), 
+            ScreensHelpers.sizeHeight(context, 0, 0)
+          ) 
+          : EdgeInsets.fromLTRB(
+            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeHeight(context, 0, 0), 
+            ScreensHelpers.sizeWidth(context, 5, 0.03), 
+            ScreensHelpers.sizeHeight(context, 0, 0)
+          ),
+      child: Text(
+       i18n.tr("REGISTER_SCREEN.FOOTER.LABEL"),
       ),
     );
   }
