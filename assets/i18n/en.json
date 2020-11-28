@@ -16,7 +16,24 @@
     },
     "HELLO": "Hello!",
     "GREETTO": "Greet to, {}!"
-  },    
+  },  
+  
+  "PREFERENCES": {
+    "COMMENT": "Never use PREFERENCES keys word",
+    "PLURAL": {
+      "MAX" : 2,
+      "KEY" : "n"
+    },
+    "LINKS" : {
+      "KEY" : "~"
+    }
+  },
+
+  "~": {
+    "COMMENT" : "Links Tags"
+
+  },
+
   "SPLASH_SCREEN" : {
     "HEADER": "STAR DELIVERY",
     "FOOTER": {
@@ -154,21 +171,6 @@
         "TITLE": "Continue with {} ",
         "TOOLTIPS": ""
       }      
-    }
-  },
-
-  "~": {
-
-  },
-
-  "PREFERENCES": {
-    "COMMENT": "Never use PREFERENCES keys word",
-    "PLURAL": {
-      "MAX" : 2,
-      "KEY" : "n"
-    },
-    "LINKS" : {
-      "KEY" : "~"
     }
   }
     

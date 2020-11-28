@@ -9,15 +9,6 @@ I18n i18n = I18n.getInstance();
 
 class Social extends StatelessWidget {
 
-  
-void _purchaseSocial(_Kind kind, BuildContext context) {
-  print('User want to continue with Facebook $kind Network');
-  if (LoginScreen.submitRoute.isNotEmpty) {
-      Navigator.pushReplacementNamed(context, LoginScreen.submitRoute);
-    }
-}
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -149,6 +140,12 @@ Widget _social(BuildContext context, _Kind kind) {
   );
 }
 
+void _purchaseSocial(_Kind kind, BuildContext context) {
+  print('User want to continue with Facebook $kind Network');
+  if (LoginScreen.submitRoute.isNotEmpty) {
+      Navigator.pushReplacementNamed(context, LoginScreen.submitRoute);
+    }
+}
 
 
 TextStyle buttonStyle = TextStyle(
